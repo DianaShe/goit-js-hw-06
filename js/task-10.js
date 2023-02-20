@@ -1,16 +1,17 @@
-const createBtn = document.querySelector('button[data-create]');
-const destroyBtn = document.querySelector('button[data-destroy]');
-const boxesContainer = document.querySelector('#boxes');
-const inputEl = document.querySelector('#controls input');
+const createBtn = document.querySelector("button[data-create]");
+const destroyBtn = document.querySelector("button[data-destroy]");
+const boxesContainer = document.querySelector("#boxes");
+const inputEl = document.querySelector("#controls input");
 
-inputEl.addEventListener('input', onInputChange);
-createBtn.addEventListener('click', onCreateBtn);
-destroyBtn.addEventListener('click', onDestroyBtn);
+inputEl.addEventListener("input", onInputChange);
+createBtn.addEventListener("click", onCreateBtn);
+destroyBtn.addEventListener("click", onDestroyBtn);
 
 let value = 0;
 
 function onInputChange(event) {
-  value = event.currentTarget.value;
+  value = event.currentTarget.value > 100 ? 100 : event.currentTarget.value;
+  inputEl.value = value;
 }
 
 function onCreateBtn(event) {
@@ -32,12 +33,11 @@ function createBoxes(amount) {
     boxEl.style.height = `${boxSize}px`;
     boxes.push(boxEl);
   }
-  
-  boxesContainer.append(...boxes);
-};
 
+  boxesContainer.append(...boxes);
+}
 
 function onDestroyBtn(event) {
-  boxesContainer.innerHTML = '';
-  inputEl.value = 0;
+  boxesContainer.innerHTML = "";
+  inputEl.value = "";
 }
